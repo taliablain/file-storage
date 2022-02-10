@@ -12,26 +12,22 @@ print(hdir)
 # TODO: Use the glob.glob() function to obtain the list of filenames
 
 #printing out list of file names in home directory
-for filename in glob.glob(pattern, recursive=True):
+home_directory = glob.glob(pattern)
+for filename in home_directory:   #make glob.glob(pattern) a variable
     print(filename)
-
-
+    size = os.path.getsize(filename)
+    if size != 0:
+        print("size of '%s' in bytes: " % filename, size)
 # TODO: use os.path.getsize to find each file's size
 #this is the size of the file that describes the directory
-size = os.path.getsize(filename)
-print("size of '%s' in bytes: " %pattern, size)
+
 #prints the number of files/subdirectories in the path
 no_of_files = (len(os.listdir(hdir)))
-print("number of files in %s: " %pattern, no_of_files)
 #prints the size of files in the directory
 allfiles = sum(os.path.getsize(f) for f in os.listdir('.') if os.path.isfile(f))
-#print("size of files in %s: " %pattern, allfiles )
-for filename in glob.glob(pattern, recursive=True):
-    print(size)
 
 # TODO: Add a test to only display files that are not zero length
-if size != 0:
-    print(size)
+
 
 # TODO: Remove the leading directory name(s) from each filename before you print it - 
 # using os.path.basename()
